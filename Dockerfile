@@ -19,3 +19,6 @@ COPY . /opt/mosaico
 EXPOSE 9006
 
 CMD ["grunt", "default"]
+
+# This is a coment
+
