@@ -37,8 +37,8 @@ font-family: 'Century Gothic W01 Bold',arial,sans-serif;
 #primaryNav .navigation{
     background: #e31c39;
     font-size: 1.1em;
-    border-left: 1px solid #ca0a26;
     border-right: 1px solid #eb6175;
+    border-left: 1px solid #eb6175;
     width: 940px;
     margin: 0 auto;
     padding: 0;
@@ -57,9 +57,9 @@ font-family: 'Century Gothic W01 Bold',arial,sans-serif;
 #primaryNav .navigation li a {
 	display: block;
 	color: #fff;
-	padding: 11px 0 10px 0;
+	padding: 10px 0;
 	text-align: center;
-	border-left: 1px solid #eb6175;
+	/*border-left: 1px solid #eb6175;*/
 }
 #main {
 	background-color: white;
