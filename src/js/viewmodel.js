@@ -142,7 +142,7 @@ function initializeEditor(content, blockDefs, thumbPathConverter, galleryUrl) {
     debug: ko.observable(false),
     contentListeners: ko.observable(0),
 
-    logoPath: 'dist/img/logo.png',
+    logoPath: 'dist/img/logo_32x28.png',
     logoUrl: '.',
     logoAlt: 'ViiV Healthcare logo'
   };
