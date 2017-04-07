@@ -16,7 +16,7 @@ padding: 0 10px;
 }
 #logo {
 float: left;
-margin: 20px 51px 20px 0;
+margin: 10px 50px 10px 0;
 }
 #header {
 font-size: 1.3em;
@@ -79,7 +79,7 @@ h3.section-title {
 	outline: 2px solid #16a0ae;
 	background-color: rgba(17,128,139,0.75);
 	text-align: left;
-    padding: 12px;
+    padding: 10px;
     font-size: 1rem;
     margin: 1em 0 0.5em;
     font-weight: normal;
