@@ -11,7 +11,7 @@
 #main-toolbox {
   //font-size: 1.1em;
   line-height: normal;
-  
+
   .propEditor .propInput .checkbox-replacer {
     padding: 4px 2px;
     font-size: 1.2em;
@@ -59,7 +59,7 @@
   .img-dropzone.ui-state-draghover:before {
     background-color: fade(@mosaico-selection-color, 80%);
     animation: none;
-  } 
+  }
 
   .uploadzone {
     font-size: 1.2em;
@@ -71,7 +71,7 @@
   @import (optional) "style_elements_drupal.less"; // TODO remove me
   @import "style_elements_jquery.less";
   @import (optional) "style_elements_qtip.less"; // TODO remove me
-  
+
   *,
   *:before,
   *:after {
@@ -79,7 +79,7 @@
     padding: 0;
     box-sizing: border-box;
   }
-  
+
   .ui-icon {
     overflow: visible; // preview icons to select desktop/tablet/smartphone are truncated without this.
   }
@@ -88,12 +88,12 @@
     display: inline-block;
     font-style: normal;
   }
-  
+
   .buttons {
     text-align: center;
     padding-top: 3px;
   }
-  
+
   .propInput {
     input[type=text], input[type=number], input[type=url], select {
       .input-style();
@@ -143,21 +143,21 @@
       }
     }
   }
-  
+
   .propEditor {
     display: table;
     width: 100%;
   }
-  
+
   .propLabel {
     padding: 8px 8px;
     padding-left: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 45%; 
-    float: left; 
-    text-align: right; 
+    width: 45%;
+    float: left;
+    text-align: right;
 
     // "?" for tooltips
     &[title]:before {
@@ -173,7 +173,7 @@
 
   }
 
-  .propInput { 
+  .propInput {
     width: 55%;
     float: left;
     input,  select { width: 100%; }
@@ -183,7 +183,7 @@
     width: 50%;
   }
 
-  .propCheck { 
+  .propCheck {
     width: 5%; float: left; padding: 5px; display: none;
   }
   .notnull .propCheck {
@@ -194,7 +194,7 @@
     content: "";
     display: table;
   }
-  
+
   .objEdit {
     display: block;
     width: 100%;
@@ -334,7 +334,7 @@
     font-weight: bold;
     /* background-color: #FFFF80; */
   }
-  .propEditor.notnull input, 
+  .propEditor.notnull input,
   .propEditor.notnull select {
     font-weight: bold;
   }
@@ -431,7 +431,7 @@
 
   .objEdit input[type=checkbox] {
     display: none;
-  
+
     & + .checkbox-replacer {
       width: 1.28571429em;
       display: block;
@@ -439,8 +439,8 @@
       // Rompe IE10
       // visibility: hidden;
     }
-    
-    /* , &:checked + .checkbox-replacer:before */ 
+
+    /* , &:checked + .checkbox-replacer:before */
     & + .checkbox-replacer:before {
       .makeFontAwesome();
     }
@@ -456,7 +456,7 @@
       content: '\f204'; /* '\f14a'; */
     }
   }
-  
+
   .propCheck input[type=checkbox] {
     &:checked + .checkbox-replacer:before {
       content: "\f041"; /* tondo con punto '\f192';*/ /* '\f140'; *//* '\f14a'; */
@@ -471,7 +471,7 @@
       opacity: .8;
     }
   }
-  
+
   .propInput .ui-spinner {
     width: 100%;
     margin: 0;
@@ -494,7 +494,7 @@
     text-decoration: underline;
     cursor: help;
   }
-  
+
   .noSelectedBlock, .customStyleHelp, .objEmpty, .galleryEmpty, .blockDescription {
     padding: 1em;
     margin-bottom: .5em;
@@ -511,7 +511,7 @@
   /***************
    * COLOR PICKER
    ***************/
-  
+
   .evo-pop {
     right: 0;
     width: auto;
@@ -557,7 +557,7 @@
       font-size: 17px;
       margin: 5px 0 4px 4px;
     }
-    
+
     .evo-more {
       padding: 4px 5px;
       a {
@@ -574,7 +574,7 @@
 
 #toolbar {
   padding: 5px 10px;
-  
+
   .button, .ui-button, .button_dropdown_split {
     margin-top: 0; margin-bottom: 0;
   }
@@ -585,7 +585,7 @@
       margin: .2em 0 0 0;
     }
   }
-  
+
   // When screen is not big enough to show the preview sidebar, let's hide the preview button
   @media (max-width: (@screen-lg-max) ) {
     label[for=previewFrameToggle] {
@@ -619,7 +619,7 @@
     height: 100%;
     overflow: hidden;
   }
-  
+
   #tooltabs.ui-tabs {
     overflow: hidden;
     .ui-tabs-panel {
@@ -628,7 +628,7 @@
       overflow-x: hidden;
       z-index: 100;
     }
-    
+
     .ui-tabs-nav {
       font-size: 1.2em;
       padding: 0px 0px 0px 4px;
@@ -671,9 +671,9 @@
       z-index: 100;
       background-color: @mosaico-background-color;
     }
-    
+
   }
-  
+
   .draggable-item {
     display: inline-block;
   }
@@ -685,7 +685,7 @@
     z-index: 100;
     display: inline-block;
   }
-  
+
   .draggable-item .block {
     // margin: 3px;
     .handle {
@@ -735,7 +735,7 @@
       }
     }
   }
-  
+
   .blockType {
     display: none;
   }
@@ -749,7 +749,7 @@
   .block-list .draggable-item img {
     width: 100%;
   }
-  
+
   .objEdit.level1.selectable {
     .makeSelectable(5px, ~'.selecteditem', 0);
   }
@@ -765,13 +765,13 @@
     }
     */
   }
-  
+
   .blockCheck input[type=checkbox] {
-  
+
     & + .checkbox-replacer {
       width: 56px;
     }
-  
+
     & + .checkbox-replacer:after {
       .makeFontAwesome;
     }
@@ -829,7 +829,7 @@
       padding-right: 4px;
     }
 
-    
+
     &:checked + .checkbox-replacer:after,
     & + .checkbox-replacer:before {
       .button-style();
@@ -845,7 +845,7 @@
     }
 
   }
-  
+
   /* while local-editing we always show the local editor */
   .workLocal {
     .propInput.global, .propInput.global * { display: none; }
@@ -863,7 +863,7 @@
       margin-right: 0;
     }
   }
-  
+
   .customStyled span {
     display: none;
   }
@@ -879,13 +879,13 @@
     opacity: 1;
   }
 
-  
+
   #tooldebug {
     overflow: auto;
   }
 }
 .mo-standalone #main-toolbox #tooltabs.ui-tabs > .ui-tabs-nav {
-  padding-left: 40px;
+  padding-left: 90px;
 }
 
 /****************************************************************************************************************************
@@ -923,7 +923,7 @@
   border-radius: 0;
   background-color: @mosaico-background-color;
   box-shadow: 1px 0px 3px @mosaico-shadow-color;
-  
+
   .close {
     float: right;
     visibility: hidden;
@@ -943,7 +943,7 @@
       height: 24px;
     }
   }
-  
+
   .pane {
     background-color: @mosaico-background-color;
     border-radius: 5px;
@@ -954,7 +954,7 @@
     padding: 5px;
     display: block;
   }
-  
+
 }
 
 .slidebar.hidden {
@@ -964,7 +964,7 @@
 
 #toolimagestab {
   padding: 0.2em;
-  
+
   ul.ui-tabs-nav {
     padding: 0;
   }
@@ -1013,7 +1013,7 @@
 }
 
 #frame-container > iframe {
-  
+
   border: 0;
   box-sizing: border-box;
   padding: 0 6px;
@@ -1036,7 +1036,7 @@
 
 #frame-container.large > iframe {
   padding: 15px;
-  
+
   width: 250%;
   height: 250%;
   transform: scale(0.4);
