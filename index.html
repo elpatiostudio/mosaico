@@ -141,10 +141,9 @@ a, a:link, a:visited {
    padding: 2px 5px ;
 }
 .operationButton, .resumeButton {
-   background-color: #00A0AF;
+   background-color: #C51832;
    color: white !important;
    padding: 8px 13px;
-   border-radius: 5px;
    display: inline-block;
 }
 .operationButton i {
@@ -309,11 +308,32 @@ a, a:link, a:visited {
 	#main {
 		background-color: white;
 	}
+	h3.section-title {
+	    font-family: 'Century Gothic W01',arial,sans-serif;
+	    text-align: left;
+	    color: #e31c39;
+	    font-size: 1.5rem;
+	    font-weight: normal;
+	    margin: 1.5em 0 0.5em;
+	    line-height: 1;
+	}
 	.template .description {
-			text-transform: capitalize;
+		text-transform: capitalize;
+		background-color: #16a0ae;
+		outline: 2px solid #16a0ae;
+    	background-color: rgba(17,128,139,0.75);
+    	text-align: left;
+	    padding: 12px;
+	    font-size: 1rem;
+	    margin: 1em 0 0.5em;
+	    font-weight: normal;
+	    color: #fff;
 	}
 	.template a {
-			outline: 2px solid #757678;
+		outline: 2px solid #757678;
+	}
+	.template a:hover {
+		outline: 2px solid #eb6175;
 	}
 	#footer {
 		background-color: #eaedf0;
@@ -413,11 +433,10 @@ $(function() {
 			</div>
 			<!-- /ko -->
 			<div class="content" style="background-color: white; margin-top: -20px; padding-top: 15px; background-origin: border; padding-bottom: 2em">
-				<br>
-				<h3>Please select the template you want to use in your campaign.</h3>
+				<h3 class="section-title">Please select the template you want to use in your campaign.</h3>
 				<div data-bind="foreach: templates">
 				   <div class="template template-xx" style="" data-bind="attr: { class: 'template template-'+name }">
-					<div class="description" style="padding-bottom:5px"><b data-bind="text: name ">xx</b>: <span data-bind="text: desc">xx</span></div>
+					<div class="description"><b data-bind="text: name ">xx</b>: <span data-bind="text: desc">xx</span></div>
 					<a href="#" data-bind="click: $root.newEdit.bind(undefined, name), attr: { href: 'editor.html#templates/'+name+'/template-'+name+'.html' }">
 					   <img src width="100%" alt="xx" data-bind="attr: { src: 'templates/'+name+'/edres/_full.png' }">
 					</a>
