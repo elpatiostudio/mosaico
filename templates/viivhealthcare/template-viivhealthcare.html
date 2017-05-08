@@ -1,0 +1,724 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, time=no, date=no">
+  <title style="-ko-bind-text: @titleText">TITLE</title>
+  <style type="text/css">
+    @supports -ko-blockdefs {
+      id { widget: id }
+      size { label: Size; widget: select; options: 8|9|10|11|12|13|14|15|16|18|20|22|25|28|31; }
+      visible { label: Visible?; widget: boolean }
+      color { label: Color; widget: color }
+      radius {
+        label: Corner Radius;
+        widget: integer;
+        max: 20;
+        help: Attention - this property is not supported on all email clients (i.e. Outlook)
+      }
+      face { label: Font; widget: select; options: Arial, Helvetica, sans-serif=Arial|Arial Black, Arial Black, Gadget, sans-serif=Arial Black|Comic Sans MS, Comic Sans MS5, cursive=Comic Sans|Courier New, Courier New, monospace=Courier|Georgia, serif=Georgia|Impact, sans-serif=Impact|Lucida Console, Monaco, monospace=Lucida Console|Lucida Sans Unicode, Lucida Grande, sans-serif=Lucida Sans Unicode|Times New Roman, Times, serif=Times New Roman|Verdana, Geneva, sans-serif=Verdana}
+      decoration { label: Decoration; widget: select; options: none=None|underline=Underline }
+      linksColor { label: Link Color; extend: color }
+      linksDecoration { label: Underlined Links?; extend: decoration }
+      buttonColor { label: Button Color; extend: color }
+      text { label: Paragraph; widget: text }
+      url { label: Link; widget: url }
+      src { label: Image; widget: src }
+      hrWidth { label: Width; widget: select; options:10|20|30|40|50|60|70|80|90|100; }
+      hrHeight { label: Line height; widget: integer; max: 80; }
+
+      height { label: Height; widget: integer }
+      imageHeight { label: Image Height; extend: height; }
+      spacerSize { label: Height; widget: integer; max: 90; min: 4; }
+      align { label: Alignment; widget: select; options:left=Left|right=Right|center=Center}
+      alt {
+        label: Alternative Text;
+        widget: text;
+        help: Alternative text will be shown on email clients that does not download image automatically;
+      }
+      sponsor { label: Sponsor; properties: visible=true src url alt; category: hidden }
+      titleText {label:Title Text;category: hidden;}
+      gutterVisible { label: Show Gutter; extend: visible }
+      socialIconType { label: Icon Version;widget: select; options:bw=Black and White|colors=Colors; }
+
+      preheaderLinkOption {
+        label: Unsubscribe Link;
+        widget: select;
+        options: [profile_link]=Profile|[unsubscribe_link]=Unsubscribe|none=None;
+        help: If -None- is selected, preHeader text will be shown;
+      }
+     
+      hrStyle { label: Separator Style;properties:color hrWidth hrHeight; }
+      hrStyle:preview { height: 200%; width: 200%; bottom: 20px; -ko-border-bottom: @[hrHeight]px solid @color; }
+      preheaderVisible { label: Show Preheader; extend: visible; help: Preheader block is the first one on the top of the page. It contains web version link and optionally unsubscribe link or a preheader text that will be shown as a preview on some email clients; }
+
+      /* content types */
+      blocks { label: Blocks; properties: blocks[]; }
+      link { label: Link; properties: text url }
+      image { label: Image; properties: src url alt }
+      backgroundColor { label: Background Color; extend: color }
+      buttonLink { label: Button; extend: link }
+      
+      /* texts and links */
+      textStyle { label: Text; properties: face color size }
+      textStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      linkStyle { label: Link; properties: face color size decoration=none }
+      linkStyle:preview { -ko-bind-text: @['Link']; -ko-font-size: @[size]px; -ko-font-family: @face; -ko-color: @color; -ko-text-decoration: @[decoration] }
+      longTextStyle { label: Paragraph; properties: face color size linksColor   }
+      longTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      bigButtonStyle { label: Big Button; extend: buttonStyle }
+      titleTextStyle { label: Title; extend: textStyle }
+      /* background */
+      externalBackgroundColor { label: External Background; extend: color }
+
+      externalTextStyle { label: Alternative Text; extend: textStyle }
+      externalTextStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+     
+      bigTitleStyle { label: Title; properties: face color size align}
+      bigTitleStyle:preview { -ko-bind-text: @['AaZz']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; }
+      /* buttons */
+      buttonStyle color { label: Text Color; extend: color }
+      buttonStyle size { label: Text Size; extend: size }
+      buttonStyle { label: Button; properties: face color size buttonColor radius }
+      buttonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }
+      
+      /* contents */
+      preheaderText {label: PreHeader Text; extend:text; help: This text will be shown on some email clients as a preview of the email contents;}
+      leftImage { label: Left Image; extend: image }
+      leftLongText { label: Left Text; extend: text }
+      leftButtonLink { label: Left Button; extend: buttonLink }
+      middleImage { label: Central Image; extend: image }
+      middleLongText { label: Central Text; extend: text }
+      middleButtonLink { label: Central Button; extend: buttonLink }
+      rightImage { label: Right Image; extend: image }
+      rightLongText { label: Right Text; extend: text }
+      rightButtonLink { label: Right Button; extend: buttonLink }
+      webversionText{ label: Web Link Text; extend: text;}
+      unsubscribeText{ label: Unsubscribe Link; extend: text;}
+
+      titleVisible { label: Show Title; extend: visible; }
+      buttonVisible { label: Show Button; extend: visible; }
+      imageVisible { label: Show Image; extend: visible; }
+
+      contentTheme { label: Main Style; }
+      contentTheme:preview { -ko-background-color: @[backgroundColor] }
+      frameTheme { label: Frame Style; }
+      frameTheme:preview { -ko-background-color: @[backgroundColor] }
+      template preheaderText { label: Preheader; }
+
+      template { label: Page; theme: frameTheme ;properties:  preheaderVisible=true; version: 1.0.6; }
+
+      footerBlock { label: Unsubscribe Block; theme: frameTheme }
+      
+      socialBlock fbVisible { label: Facebook; }
+      socialBlock twVisible { label: Twitter }
+      socialBlock ggVisible { label: Google+ }
+      socialBlock inVisible { label: LinkedIn }
+      socialBlock flVisible { label: Flickr }
+      socialBlock viVisible { label: Vimeo }
+      socialBlock webVisible { label: Website }
+      socialBlock instVisible { label: Instagram }
+      socialBlock youVisible { label: YouTube }
+      socialBlock fbUrl { label: Facebook Link}
+      socialBlock twUrl { label: Twitter Link}
+      socialBlock ggUrl { label: Google+ Link}
+      socialBlock inUrl { label: LinkedIn Link}
+      socialBlock flUrl { label: Flickr Link}
+      socialBlock viUrl { label: Vimeo Link}
+      socialBlock webUrl { label: Website Link}
+      socialBlock instUrl { label: Instagram Link}
+      socialBlock youUrl { label: YouTube Link}
+      socialBlock {
+        label: Social Block;
+        properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl inVisible=false inUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
+        variant:socialIconType;
+        theme: frameTheme
+      }
+      
+      preheaderBlock { label:Preheader Block;  theme: frameTheme}
+
+      sideArticleBlock imagePos {label:Image position;widget:select; options: left=Left|right=Right; }
+      sideArticleBlock imageWidth { label: Image Size; widget: select; options: 120=Small|166=Medium|258=Big; }
+      sideArticleBlock { label: Image+Text Block; properties: backgroundColor titleVisible=true buttonVisible=true imageWidth=166 imagePos=left titleTextStyle longTextStyle buttonStyle  image  longText buttonLink; variant:imagePos; theme: contentTheme }
+
+      textBlock { label: Text Block; properties: backgroundColor longTextStyle longText; theme: contentTheme}
+
+      singleArticleBlock { label: Image/Text Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  image  longText buttonLink;theme: contentTheme}
+
+      doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+
+      tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
+      
+      bannerBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big; variant:imageWidth;}
+      bannerBlock { label: Logo Block; properties: image imageWidth=258; variant: imageWidth; theme: contentTheme}
+      
+      titleBlock { label: Title; theme: contentTheme}
+
+      imageBlock longTextStyle {
+        label: Alternative Text;
+      }
+      imageBlock { label: Image; properties: gutterVisible=false; variant: gutterVisible; theme: contentTheme }
+
+      doubleImageBlock longTextStyle {
+        label: Alternative Text;
+      }
+      doubleImageBlock { label: Two Image Gallery Block; properties: gutterVisible=false; variant: gutterVisible; theme: contentTheme }
+
+      tripleImageBlock longTextStyle {
+        label: Alternative Text;
+      }
+      tripleImageBlock { label: Three Image Gallery Block;properties:gutterVisible=false;variant:gutterVisible; theme: contentTheme}
+
+      buttonBlock { label: Button Block; theme: contentTheme}
+      hrBlock { label: Separator Block;  theme: contentTheme}
+      spacerBlock { label: Spacer Block;  theme: contentTheme}
+
+      spacerBlock:preview,
+      bannerBlock:preview { -ko-background-color: @[externalBackgroundColor] }
+
+      preheaderBlock:preview,
+      hrBlock:preview,
+      sideArticleBlock:preview,
+      textBlock:preview,
+      singleArticleBlock:preview,
+      doubleArticleBlock:preview,
+      tripleArticleBlock:preview,
+      titleBlock:preview,
+      footerBlock:preview,
+      socialBlock:preview,
+      buttonBlock:preview,
+      titleBlock:preview,
+      socialshareBlock:preview { -ko-background-color: @[backgroundColor] }
+    }
+  </style>
+  <style type="text/css">
+    * {margin: 0; padding: 0;}
+    a[x-apple-data-detectors] {color: inherit !important;text-decoration: none !important;font-size: inherit !important;font-family: inherit !important;font-weight: inherit !important;line-height: inherit !important; pointer-events:none;}
+    .container {min-width:600px!important;}
+    @media screen and (min-device-width: 600px), screen and (min-width: 600px) {
+      .container {width:600px !important; height:auto !important;min-width:600px!important;}
+      .bordercontainer {width:598px !important; height:auto !important;}
+  }
+  @media screen and (max-width: 600px) {
+      [class=container],
+      [class=bordercontainer] {width: 100% !important;border: 0;min-width: 100% !important; max-width: 600px !important;}
+      a[x-apple-data-detectors] {color: inherit !important;text-decoration: none !important;font-size: inherit !important;font-family: inherit !important;font-weight: inherit !important;line-height: inherit !important;}
+  }
+  table > tbody > tr > th > table {min-width:600px!important;}
+  /* footer navigation */
+  /* footer navigation desktop */
+  * [summary="fullwidthremoveat600"] ,
+  .fullwidthremoveat600 {width:100%!important;display:inline-block!important;max-height:none!important; font-size:5px; line-height:5px; }
+  * [summary="footerlink"],
+  .footerlink { display: inline-block!important;width: auto!important;border-bottom: none !important; border-right: 1px solid #fff!important;font-size: 12px!important; }
+  * [summary="footerlink"]:last-child ,
+  .footerlink:last-child { border-right: none!important;}
+  * [summary="footerlink"] table ,
+  .footerlink table { border-top: none !important;border-bottom: none !important; }
+  .msofooter table { border-top: none !important; border-bottom: none !important; }
+
+  /* footer navigation mobile */
+  @media screen and (max-width:600px) {
+      [class=footerlink] { overflow:hidden; border-right: none!important;  border-bottom: 5px solid #FFFFFF!important; display:block!important; width: 100%!important; height: auto!important; }
+      [class=footerlink] table {border-top: 5px solid #DF1E3B!important; border-bottom: 5px solid #DF1E3B!important;}
+      [class=fullwidthremoveat600] {display:block!important;max-height:0!important;overflow:hidden!important;}
+  }
+
+  * [summary="textlefttocenter590"] ,
+  .textlefttocenter590 {text-align: left!important;}
+  * [summary="textrighttocenter590"] , 
+  .textrighttocenter590 {text-align: right!important;}
+  * [summary="from15tofullwidthat600"] ,
+  .from15tofullwidthat600 {width:15px!important;}
+  * [summary="from90tofullwidthat590"] ,
+  .from90tofullwidthat590 {width:90px!important;}
+  * [summary="from240tofullwidthat590"] ,
+  .from240tofullwidthat590 {width:240px!important;}
+  * [summary="from255tofullwidthat590"] ,
+  .from255tofullwidthat590 {width:255px!important;}
+  * [summary="from255tofullwidthat600"] ,
+  .from255tofullwidthat600 {width:255px!important;}
+  * [summary="from270tofullwidthat590"] ,
+  .from270tofullwidthat590 {width:270px!important;}
+  * [summary="from275tofullwidthat590"] ,
+  .from275tofullwidthat590 {width:275px!important;}
+  * [summary="from325tofullwidthat590"] ,
+  .from325tofullwidthat590 {width:325px!important;}
+  * [summary="from420tofullwidthat590"] ,
+  .from420tofullwidthat590 {width:420px!important;}
+  * [summary="width15removeat590"] ,
+  .width15removeat590 {width:15px!important;display: inline-block!important;}
+  * [summary="width15removeat600"] ,
+  .width15removeat600 {width:15px!important;display: inline-block!important;}
+  * [summary="width30removeat590"] ,
+  .width30removeat590 {width:30px!important;display: inline-block!important;}
+  * [summary="width33removeat590"] ,
+  .width33removeat590 {width:33px!important;display: inline-block!important;}
+  * [summary="width42removeat590"] ,
+  .width42removeat590 {width:42px!important;display: inline-block!important;}
+  * [summary="width45removeat590"] ,
+  .width45removeat590 {width:45px!important;display: inline-block!important;}
+  * [summary="width57removeat590"] ,
+  .width57removeat590 {width:45px!important;display: inline-block!important;}
+  * [summary="width50removeat590"] , 
+  .width50removeat590 {width:50px!important;display: inline-block!important;}
+  * [summary="width70removeat590"] ,
+  .width70removeat590 {width:70px!important;display: inline-block!important;}
+  * [summary="width105removeat590"] ,
+  .width105removeat590 {width:105px!important;display: inline-block!important;}
+  * [summary="fixed255"] ,
+  .fixed255 {width:255px!important;}
+  * [summary="width255removeabove590"] ,
+  .width255removeabove590 {display:none !important}
+  * [summary="removeimgat590"] ,
+  .removeimgat590 {display: block!important;}
+
+  [class~=movetolast] {display:table-footer-group!important;}
+  [class~=movetofirst] {display:table-header-group!important;}
+  * [summary="tdwidth320removeat590"] ,
+  .tdwidth320removeat590 {width:320px!important;display: table-cell!important;}
+
+  @media screen and (min-device-width: 600px), screen and (min-width: 600px) {
+      .fluidfontsize {font-size: 30px!important; line-height: 36px!important;}
+
+  }
+  @media screen and (max-width: 600px) {
+      [class=tdwidth240removeat590] {display:none !important;}
+      [class=img-full] {width: 100% !important; height: auto!important;}
+      [class=width15removeat590],
+      [class=width15removeat600],
+      [class=width33removeat590],
+      [class=width50removeat590]
+      [class=width105removeat590] {display: none!important;}
+      [class=from90tofullwidthat590],
+      [class=from166tofullwidthat590],
+      [class=from240tofullwidthat590],
+      [class=from255tofullwidthat590],
+      [class=from255tofullwidthat600],
+      [class=from270tofullwidthat590],
+      [class=from275tofullwidthat590],
+      [class=from325tofullwidthat590],
+      [class=from420tofullwidthat590] {width: 100%!important;}
+      [class=at590fullauto] {width: 100% !important; height: auto!important;}
+      [class=textlefttocenter590],
+      [class=textrighttocenter590] {text-align: center!important;}
+      .width30removeat590 {display: block !important;}
+      .width42removeat590 {display: block !important;}
+      .width255removeabove590 {display:block !important}
+      [class=removeimgat590],
+      [class=tdwidth320removeat590] {display: none!important;}
+      [class=hideonmobile] {display:none!important;}
+
+      * [summary~="movetolast"], [class~=movetolast] {display:table-footer-group!important;}
+      * [summary~="movetofirst"], [class~=movetofirst] {display:table-header-group!important;}
+  }
+
+  @media screen and (max-width: 530px) {
+      .fluidfontsize {font-size: 26px!important; line-height: 28px!important;}
+
+  }
+  @media screen and (max-width: 400px) {
+      .fluidfontsize {font-size: 22px!important; line-height: 24px!important;}
+
+  }
+  @media screen and (max-width: 340px) {
+      .fluidfontsize {font-size: 20px!important; line-height: 20px!important;}
+
+  } 
+  </style><!--[if gte mso 9]>
+<style type="text/css">
+    /* mso adjustment to fix small superscripts */
+    sup { font-size: 100% !important; }
+</style>
+<![endif]--><!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+</head>
+<body style="margin:0;padding:0;border:0;background:#ffffff; width:100%; min-width:100%;" bgcolor="#FFFFFF" text="#000000">
+  <p><span style="font-family:Arial, sans-serif;"><span style="font-size: 14px;"><span style=
+      "color: rgb(192, 0, 0);"><strong>EXTERNAL</strong></span></span></span></p>
+      <!-- preheaderBlock -->
+      <div data-ko-display="preheaderVisible" data-ko-wrap="false">
+
+          <style type="text/css">
+              div.preheader 
+              { display: none !important; } 
+          </style>
+          <div class="preheader" style="font-size: 1px; display: none !important;">
+            New data from the OPERA cohort
+        </div>
+    </div>
+    <!-- /preheaderBlock -->
+     <!-- headerBlock -->
+    <table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
+    "#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="headerBlock">
+    
+    <tr>
+        <th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
+          <!--[if (gte mso 9)|(IE)]>
+            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                    <td align="center" style="margin: 0; border: 0; padding: 0;">
+                      <![endif]-->
+                      <!-- header.html start -->
+                      <!-- EMAIL HEAD -->
+                      <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+
+                          <tr>
+                            <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                            <td style=
+                            "margin: 0; border: 0; padding: 0; display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; color: #ffffff; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden;"
+                            align="left" width="92%">
+                            &nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌</td>
+                            <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                        </tr>
+
+                    </table>
+                    <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+
+                      <tr>
+                        <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                        <td style="margin: 0; border: 0; padding: 0; text-align: center; vertical-align: top; font-size: 0;" align="left">
+                          <table align="center" cellpadding="0" cellspacing="0" width="100%">
+
+                              <tr>
+                                <td class="textrighttocenter590" summary="textrighttocenter590" style=
+                                "margin: 0; border: 0; padding: 0; font-family: Arial,Helvetica,sans-serif; font-size: 12px; line-height: 18px; color: #515151; vertical-align: top; text-align: center;"
+                                align="center" valign="top">
+                                <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td align="right" valign="top" style="margin:0;border:0;padding:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#515151;text-align:right!important;vertical-align:top;"><![endif]--><a href="http://view.remailer1.viivhealthcare.com/?qs=7a5d1b9b325d59dc2125f70515e16ca40fa6a844cda261072f989e0eabc53b2524ccbdc287eb66b3a2b141aa507a5aaf80f9267447246b17ff391e31fc7281c1733b60b4e9568f73"
+                                style="text-decoration:none;"><span style="color:#E31C39; text-decoration:underline;">View&nbsp;online</span></a>
+                                &nbsp;&nbsp;|&nbsp;&nbsp; <a href=
+                                "http://click.remailer1.viivhealthcare.com/?qs=b4eff6c3369be18505dd1ff76787bea26599f69cac04c210d20313c88359d8477561f9a34d468de0e754cb3fd185454b4e89ca5c9a1bd998">
+                                <span style="color:#E31C39; text-decoration:underline;">Unsubscribe</span></a> 
+                                <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+            </tr>
+            
+        </table>
+        <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="100%">
+
+          <tr>
+            <td style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;" align="left" width="100%">&nbsp;</td>
+        </tr>
+
+    </table>
+    <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+
+      <tr>
+        <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+        <td style="margin: 0; border: 0; padding: 0;" align="left" width="92%">
+          <table style="width: 100%!important;" align="center" cellpadding="0" cellspacing="0" width="100%">
+
+              <tr>
+                <td style=
+                "margin: 0; border: 0; padding: 0; font-family: Arial,Helvetica,sans-serif; font-size: 12px; line-height: 18px; color: #C71A09; font-weight: bold;"
+                align="left"><img alt="ViiV Healthcare" src="http://viiv-email-images.pharmiwebsolutions.com/20150327/template/viiv_logo.png" style=
+                "display:block;border:0;width: 51px !important;" align="left" height="45" width="51"></td>
+            </tr>
+            <tr>
+                <td style="border: 0; padding: 0; margin: 0;">
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                      <tr>
+                        <td style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;" align="left" width="100%">&nbsp;</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+    </table>
+</td>
+<td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+</tr>
+
+</table>
+<!-- /EMAIL HEAD -->
+              <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                </tr>
+            </table>
+            <![endif]-->
+        </th>
+    </tr>
+
+</table>
+<!-- /headerBlock -->
+
+
+<div data-ko-container="main" data-ko-wrap="false">
+<!-- bannerBlock -->
+<!-- BANNER -->
+ <table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
+    "#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="bannerBlock">
+    
+    <tr>
+        <th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
+          <!--[if (gte mso 9)|(IE)]>
+            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                    <td align="center" style="margin: 0; border: 0; padding: 0;">
+                      <![endif]-->
+          <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="100%" >
+           
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                <td style="margin: 0; border: 0; padding: 0;" align="left">
+                  <a href="" style=
+                  "display:block;font-family: Arial, Helvetica, sans-serif;text-align:center;text-decoration:none;width:100%;font-size:0;line-height:0;"><img data-ko-editable="image.src" class="img-full"
+                  summary="img-full" alt="" src="http://mosaico.io/srv/f-default/img?method=placeholder&amp;params=550%2C311" style=
+                  "-ko-attr-alt: @image.alt; -ko-attr-width: @imageWidth; display:block;vertical-align:top;border:0;width:100%!important;height:auto!important;" data-ko-placeholder-height="311"  height="311" width="550"></a>
+                </td>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                <td class="fluidfontsize" summary="fluidfontsize" style=
+                "margin: 0; padding: 0; text-align: center; vertical-align: middle; font-size:30px; line-height:30px; color:#000000;font-family: Arial, Helvetica, sans-serif;mso-line-height-rule: exactly;"
+                align="center" width="92%"><span style="color:#DF1E3B">Latest tolerability data on dolutegravir</span></td>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td style="margin: 0; padding: 0; text-align: center; font-size:30px; line-height: 30px;" align="center">&nbsp;</td>
+              </tr>
+           
+          </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                </tr>
+            </table>
+            <![endif]-->
+        </th>
+    </tr>
+
+</table>
+          <!-- /BANNER -->
+          <!-- /bannerBlock  -->
+</div>
+<!-- footerBlock -->
+    <table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
+    "#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="footerBlock">
+    
+    <tr>
+        <th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
+          <!--[if (gte mso 9)|(IE)]>
+            <table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed;">
+                <tr>
+                    <td align="center" style="margin: 0; border: 0; padding: 0;">
+                      <![endif]-->
+         <!-- footer.html start -->
+          <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0; font-size: 30px; line-height: 30px;" align="left">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table><!-- LINKS -->
+          <table class="container" style="background:#DF1E3B;width:100%!important; max-width:600px;" align="center" bgcolor="#447DC0" cellpadding="0"
+          cellspacing="0" width="600">
+            <!--top border-->
+            <tbody>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;font-size:5px; line-height:5px;" align="left" width="100%">
+                  <div class="fullwidthremoveat600" summary="fullwidthremoveat600" style="background:#DF1E3B; display:block;max-height:0;overflow:hidden">
+                    &nbsp;
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;" align="center">
+                  <!--[if (gte mso 9)|(IE)]><table class="msofooter" height="22" align="center" cellpadding="0" cellspacing="0" border="0"><tr valign="middle">
+
+                      <td align="center" valign="middle" style="border-right:1px solid #FFFFFF;"><![endif]-->
+                  <div class="footerlink" summary="footerlink" style=
+                  "width:100%;display:block;vertical-align:middle; border-right: none; border-bottom:5px solid #FFFFFF; overflow:hidden;">
+                    <table style="width: 100%!important; border-top: 5px solid #DF1E3B; border-bottom: 5px solid #DF1E3B;" align="left" cellpadding="0"
+                    cellspacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td style=
+                          "margin: 0; border: 0; padding: 0 12px; font-family: Arial,Helvetica,sans-serif; -webkit-text-size-adjust: 100%; font-size: 12px; height: 22px; color: #ffffff; text-align: center; font-weight: bold; border-right: 0;"
+                          align="center" height="22" valign="middle">
+                            <a href=
+                            "http://click.remailer1.viivhealthcare.com/?qs=b4eff6c3369be185542a07c2f2649a0aea6850cb45558b58158214322986c3bbcf22b4fe769b5486b3adcbf3fab0dd611c9de4f8759339d6"
+                            style="display:inline-block;width:100%;height:100%;line-height:22px;text-decoration:none;"><span style=
+                            "display:inline-block;color:#ffffff;">Legal Notices</span></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div><!--[if (gte mso 9)|(IE)]></td>
+
+                      <td align="center" valign="middle" style="border-right:1px solid #FFFFFF;"><![endif]-->
+                  <div class="footerlink" summary="footerlink" style=
+                  "width:100%;display:block;vertical-align:middle;border-right: none; border-bottom:5px solid #FFFFFF;overflow:hidden;">
+                    <table style="width: 100%!important; border-top: 5px solid #DF1E3B; border-bottom: 5px solid #DF1E3B;" align="left" cellpadding="0"
+                    cellspacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td style=
+                          "margin: 0; border: 0; padding: 0 12px; font-family: Arial,Helvetica,sans-serif; -webkit-text-size-adjust: 100%; font-size: 12px; height: 22px; color: #ffffff; text-align: center; font-weight: bold; border-right: 0;"
+                          align="center" height="22" valign="middle">
+                            <a href=
+                            "http://click.remailer1.viivhealthcare.com/?qs=b4eff6c3369be18546b889efda64ddb97ae95774f9c9e290a8413b7969b7ca8ad428b02410d44520656778b3bf6acd0d3190687d42385f6e"
+                            style="display:inline-block;width:100%;height:100%;line-height:22px;text-decoration:none;"><span style=
+                            "display:inline-block;color:#ffffff;">Privacy Policy</span></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div><!--[if (gte mso 9)|(IE)]></td>
+
+                      <td align="center" valign="middle" style="border-right:none!important;"><![endif]-->
+                  <div class="footerlink" summary="footerlink" style=
+                  "width:100%;display:block;vertical-align:middle;border-right: none!important; border-bottom:5px solid #FFFFFF;overflow:hidden;">
+                    <table style="width: 100%!important; border-top: 5px solid #DF1E3B; border-bottom: 5px solid #DF1E3B;" align="left" cellpadding="0"
+                    cellspacing="0" width="100%">
+                      <tbody>
+                        <tr>
+                          <td style=
+                          "margin: 0; border: 0; padding: 0 12px; font-family: Arial,Helvetica,sans-serif; -webkit-text-size-adjust: 100%; font-size: 12px; height: 22px; color: #ffffff; text-align: center; font-weight: bold; border-right: 0;"
+                          align="center" height="22" valign="middle">
+                            <a href=
+                            "http://click.remailer1.viivhealthcare.com/?qs=b4eff6c3369be185ff7c9238003427a61365c950700a55b9792cc73f428fdd8f0cab07c02ebb33777dcb8c84076fa2d1470e3fbf6d45c20b"
+                            style="display:inline-block;width:100%;height:100%;line-height:22px;text-decoration:none;"><span style=
+                            "display:inline-block;color:#ffffff;">Contact Us</span></a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div><!--[if (gte mso 9)|(IE)]></td>
+
+                    </tr></table><![endif]-->
+                </td>
+              </tr><!--bottom border-->
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;font-size:5px; line-height:5px;" align="left" width="100%">
+                  <div class="fullwidthremoveat600" summary="fullwidthremoveat600" style="background:#DF1E3B; display:block;max-height:0;overflow:hidden">
+                    &nbsp;
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+            <tbody>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0; font-size: 15px; line-height: 15px;" align="left" width="100%">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- EMAIL FOOTER -->
+          <table class="container" style="background:#f7f8f8; width:100%!important; max-width:600px;" align="center" bgcolor="#F7F8F8" border="0" cellpadding=
+          "0" cellspacing="0" width="600">
+            <tbody>
+              <tr>
+                <td style="margin: 0; padding: 0; border: 0;" align="left" width="4%">&nbsp;</td>
+                <td style="margin: 0; padding: 0; border: 0;" align="left">
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="border: 0; padding: 0; margin: 0;">
+                          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;" align="left" width="100%">&nbsp;</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 0; padding: 0; margin: 0;">
+                          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style=
+                                "margin: 0; border: 0; padding: 0; line-height: 18px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #4d4d4d;"
+                                align="center" width="100%">ViiV Healthcare GmbH Talstrasse 3-5 3053 Münchenbuchsee<br>
+                                © 2016 ViiV Healthcare group of companies.<br>
+                                All rights reserved.<br>
+                                CH/DGR/0004/17 /17.02.2017/02.2017</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="border: 0; padding: 0; margin: 0;">
+                          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr>
+                                <td style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;" align="left" width="100%">&nbsp;</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td style="margin: 0; padding: 0; border: 0;" align="left" width="4%">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="container" style="background:#ffffff;width:100%!important;max-width: 600px;" align="center" bgcolor="#FFFFFF" cellpadding="0"
+          cellspacing="0" width="600">
+            <tbody>
+              <tr>
+                <td style="margin:0;border:0;padding:0;font-size:20px;line-height:20px;" align="left" width="100%">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+            <tbody>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+                <td style="margin: 0; border: 0; padding: 0; font-family: Arial; font-size: 12px; line-height: 25px; color: #447DC0; font-weight: bold;" align=
+                "left" width="92%">
+                  <table style="width: 100%!important;" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="border: 0; margin: 0; padding: 0;" align="center"><img alt="ViiV Healthcare" src=
+                        "http://viiv-email-images.pharmiwebsolutions.com/20150327/template/viiv_logo.png" style=
+                        "display:block;border:0;width: 51px !important;" align="middle" height="45" width="51"></td>
+                        <td style="width: 20px!important; border: 0; margin: 0; padding: 0;" width="20px">&nbsp;</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+              <tr>
+                <td style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;" align="left">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- footer.html end -->
+                        <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                </tr>
+            </table>
+            <![endif]-->
+        </th>
+    </tr>
+
+</table>
+<!-- /footerBlock -->
+</body>
+</html>
+
