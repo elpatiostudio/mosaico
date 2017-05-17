@@ -163,8 +163,11 @@
 				buttonBlock:preview,
 				titleBlock:preview,
 				socialshareBlock:preview { -ko-background-color: @[backgroundColor] }
+				bodyTheme { label: Body; }
+				headerBlock { label: Header; }
+
 				/*by Mig*/
-				text { label: Paragraph; widget: text }
+				heroBlock { label: Hero; }
 				title { label: Title; widget: text }
 				subTitle { label: Subtitle; }
 				link {
@@ -193,30 +196,23 @@
 				}
 				imageThumbLeft{
 					label: Left Image Link;
-					properties: src url alt text
+					properties: src url alt text;
 				}
 				imageThumbCenter{
 					label: Center Image Link;
-					properties: src url alt text
+					properties: src url alt text;
 				}
 				imageThumbRight{
 					label: Right Image Link;
-					properties: src url alt text
+					properties: src url alt text;
 				}
-				/*Header*/
-/*				problemsLink {
-					label: Problems Viewing This email Emails Link;
-					properties: url text;
+				signatureBlock{
+					label: Signature;
 				}
-				watchOnlineLink {
-					label: Watch Online;
-					properties: url text;
-				}*/
-
-				image { label: Image; properties: src url alt }
-				bodyTheme { label: Body; }
-				headerBlock { label: Header; }
-				heroBlock { label: Hero; }
+				personEmail{
+					label: Href attr;
+					properties: url;
+				}
 			}
 		</style>
 		<style type="text/css">
@@ -956,7 +952,7 @@
 																	&nbsp;</td>
 													</tr>
 													<tr>
-															<td style="margin:0;padding:0;border:0;font-size:10px;line-height:10px;vertical-align:middle;" width="4%">
+															<td style="margin:0;padding:0;border:0;font-size:10px;lifplacene-height:10px;vertical-align:middle;" width="4%">
 																	&nbsp;</td>
 															<td style="margin:0;padding:0;border:0;" width="92%"><a data-ko-link="imageThumbRight.url" href="http://click.remailer1.viivhealthcare.com/?qs=33caef85cd84baab32cad628946e6ca4b23d2b9d8f61a3482ad10ca742dbcd345c57876544a83965" style="display:block;font-family:Arial,Helvetica,sans-serif;text-align:center;text-decoration:none;width:100%;"><span style="display:block;width:100%;margin:0auto;color:#4d4d4d;word-wrap:break-word;vertical-align:middle;text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;" data-ko-editable="imageThumbRight.text">KLINISCHE STUDIENERGEBNISSE<br>Studienzusammenfassungen&nbsp;►</span>
 				</a></td>
@@ -985,6 +981,56 @@
 				</tr>
 			</table>
 			<!-- /threeThumbsBlock -->
+
+			<!-- signatureBlock -->
+			<table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
+				"#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="signatureBlock">
+				<tr>
+					<th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
+						<table class="container" style="background:#ffffff;max-width:600px;" align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+										<tr>
+												<td style="margin:0;border:0;padding:0;font-size:20px;line-height:20px;" align="left" width="100%">
+														&nbsp;</td>
+										</tr>
+								</tbody>
+						</table>
+						<table class="container" style="font-size:16px;background:#ffffff;width:100%!important;max-width:600px;" align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+										<tr>
+												<td style="margin: 0; padding: 0; border: 0;" align="left" width="4%">&nbsp;</td>
+												<td style="margin: 0; padding: 0; border: 0;font-family: Arial, Helvetica, sans-serif;font-size:14px; line-height:17px;color:#515151;" align="left" width="92%">
+														<table style="width:100%!important;" align="center" cellpadding="0" cellspacing="0" width="100%">
+																<tbody>
+																		<tr>
+																			<td style="width:80px!important; margin: 0;border: 0; padding: 0;" align="left" width="80">
+																					<img data-ko-editable="image.src" class="img-full" alt="" src="http://mosaico.io/srv/f-default/img?method=placeholder&amp;params=80%2C80" style="display:block;border: 6px solid#F1F1F1;" height="80" width="80">
+																			</td>
+																			<td style="width:10px!important; margin: 0;border: 0; padding: 0;" align="left" width="10">
+																						&nbsp;</td>
+																			<td style="margin: 0; border: 0; padding:0;font-family: Arial, Helvetica,sans-serif;font-size: 13px;line-height:1.5;#515151" align="left">
+																				<span style="color:#000000;font-weight:normal;" data-ko-editable="personSalutationText" >Mit freundlichen 	Grüssen,</span>
+																				<br>
+																				<span data-ko-editable="personNameText">Werner Büchi</span>
+																				<br>
+																				<span style="color:#636363;font-weight:normal;" data-ko-editable="personPositionText">Medical Scientific Liaison Manager</span>
+																				<br>
+																				<span data-ko-editable="personTelephoneText">+41 79 292 03 84</span>
+																				<br>
+																				<a data-ko-link="personEmail.url" href="mailto:werner.u.buechi@viivhealthcare.com?subject=RE:+Alle+relevanten+Informationen+%C3%BCber+Maraviroc+jetzt+online" style="text-decoration:none;word-wrap: break-word; display: block;"><span data-ko-editable="personEmailText" style="color:#E31C39;text-decoration:underline;">werner.u.buechi@viivhealthcare.com</span>&nbsp;</a>
+																			</td>
+																		</tr>
+																</tbody>
+														</table>
+												</td>
+												<td style="margin: 0; padding: 0; border: 0;" align="left" width="4%">&nbsp;</td>
+										</tr>
+								</tbody>
+						</table>
+					</th>
+				</tr>
+			</table>
+			<!-- /signatureBlock -->
 
 
 
