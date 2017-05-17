@@ -20,7 +20,7 @@ ko.bindingHandlers.wysiwygOrHtml = {
     var isNotWysiwygMode = (typeof bindingContext.templateMode == 'undefined' || bindingContext.templateMode != 'wysiwyg');
     if (isNotWysiwygMode)
       return ko.bindingHandlers['virtualHtml'].update(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
-    //else 
+    //else
     //  return ko.bindingHandlers.wysiwyg.update(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext);
   }
 };
@@ -28,6 +28,7 @@ ko.virtualElements.allowedBindings['wysiwygOrHtml'] = true;
 
 ko.bindingHandlers.wysiwygHref = {
   init: function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+
     if (element.nodeType !== 8) {
       var v = valueAccessor();
 
@@ -60,6 +61,8 @@ ko.bindingHandlers.wysiwygHref = {
       if (isNotWysiwygMode) {
         if ((attrValue === false) || (attrValue === null) || (attrValue === undefined))
           element.removeAttribute('href');
+        else if (attrValue.toString().indexOf('@') != -1)
+          element.setAttribute('href', 'mailto:' + attrValue.toString());
         else
           element.setAttribute('href', attrValue.toString());
       }
@@ -176,7 +179,7 @@ ko.bindingHandlers.wysiwyg = {
     plugins: ["link hr paste lists textcolor code"],
     // valid_elements: 'strong/b,em/i,*[*]',
     // extended_valid_elements: 'strong/b,em/i,*[*]',
-    // Removed: image fullscreen contextmenu 
+    // Removed: image fullscreen contextmenu
     // download custom:
     // jquery version con legacyoutput, anchor, code, importcss, link, paste, textcolor, hr, lists
   },
