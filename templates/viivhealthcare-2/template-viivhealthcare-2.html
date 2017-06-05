@@ -231,8 +231,9 @@
 				/* highlightedBlock & Style */
 				highlightedBlockStyle {
 					label: Highligthed Block Style;
-					properties: color backgroundColor
+					properties: color backgroundColor thickness;
 				}
+
 				highlightedBlock {
 					label: Highligthed Block Content;
 					properties: url text;
@@ -1086,7 +1087,7 @@
 							  <tr>
 								<td style="margin: 0; border: 0; padding: 0;" align="left" width="2%">&nbsp;</td>
 								<td style="margin: 0; border: 0; padding: 0;" align="center" width="96%">
-								  <table style="background-color: #394048; -ko-attr-bgcolor: @highlightedBlockStyle.backgroundColor; -ko-background-color: @highlightedBlockStyle.backgroundColor; width:100%!important;max-width: 600px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
+								  <table style="background-color: #394048; -ko-attr-bgcolor: @highlightedBlockStyle.backgroundColor; -ko-background-color: @highlightedBlockStyle.backgroundColor; width:100%!important;max-width: 600px; border-style: solid; border-color: #ffffff; -ko-border-color: @highlightedBlockStyle.color; border-width:0px; -ko-border-width: @[highlightedBlockStyle.thickness]px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
 									<tbody>
 									  <tr>
 										<td style="margin:0;border:0;padding:0;" align="left" width="2%">&nbsp;</td>
