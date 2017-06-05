@@ -28,7 +28,7 @@
     "console-browserify": "~1.0.3",
     "font-awesome": "~4.6.3",
     "blueimp-file-upload": "~9.12.5",
-    "evol-colorpicker": "bago/colorpicker#mosaico",
+    "evol-colorpicker": "evoluteur/colorpicker#3.3.1",
     "jsep": "~0.3.0",
     "juice": "Automattic/juice#~3.0.1",
     "slick": "kamicane/slick#~1.12.2",
