@@ -214,6 +214,17 @@ ko.bindingHandlers.wysiwyg = {
       hidden_input: false,
       plugins: ["paste"],
       toolbar1: "bold italic",
+      textcolor_map: [ /*by MIG*/
+        'e31c39', 'Red',
+        '394048', 'Gray blue',
+        '0095c6', 'Blue',
+        'ffffff', 'White',
+        '000000', 'Black',
+        '4d4d4d', 'Dark',
+        'dedfdf', 'Gray',
+        '757778', 'Middle gray',
+        'f7f8f8', 'Light gray'
+      ],
       toolbar2: "",
       // we have to disable preview_styles otherwise tinymce push inline every style he things will be applied and this makes the style menu to inherit color/font-family and more.
       preview_styles: false,

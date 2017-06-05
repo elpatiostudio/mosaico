@@ -21,6 +21,7 @@ var _getOptionsObject = function(options) {
 // TODO maybe we should use a common string here, and rely only on the original category.
 var _filterProps = function(model, editType, level) {
   var res = [];
+  // console.log(model);
   for (var prop in model)
     if (!prop.match(/^customStyle$/) && !prop.match(/^_/) && model.hasOwnProperty(prop)) {
       var isStyleProp = model[prop] !== null && typeof model[prop]._category != 'undefined' && model[prop]._category == 'style';
@@ -67,7 +68,8 @@ var _propInput = function(model, prop, propAccessor, editType, widgets) {
     html += '<input type="checkbox" value="nothing" data-bind="checked: ' + propAccessor + ', ' + onfocusbinding + '" />';
     html += '<span class="checkbox-replacer" ></span>'; /* data-bind="css: { checked: '+propAccessor+' }" */
   } else if (widget == 'color') {
-    html += '<input size="7" type="text" data-bind="colorpicker: { color: ' + propAccessor + ', strings: $root.t(\'Theme Colors,Standard Colors,Web Colors,Theme Colors,Back to Palette,History,No history yet.\') }, ' + ', ' + onfocusbinding + '" />';
+    var customThemePalette = model['_customThemePalette']; // by MIG
+    html += '<input size="7" type="text" data-bind="colorpicker: { color: ' + propAccessor + ', customTheme: ' + customThemePalette + ', strings: $root.t(\'Theme Colors,Standard Colors,Web Colors,Theme Colors,Back to Palette,History,No history yet.\') }, ' + ', ' + onfocusbinding + '" />';
   } else if (widget == 'select') {
     if (typeof model._options != 'undefined') {
       var opts = _getOptionsObject(model._options);
@@ -149,7 +151,7 @@ var _propEditor = function(withBindingProvider, widgets, templateUrlConverter, m
   var ifSubsThreshold = 1;
 
   // The visibility handling is a PITA
-  // 
+  //
   // Here are some "edge cases" to test whenever we change something here:
   // LM social footer: removing shareVisibile must be reflected in the booleans sub-checks
   // FLUID social block: multiple clicks on the "wand" should not make the editor invisible
@@ -164,7 +166,7 @@ var _propEditor = function(withBindingProvider, widgets, templateUrlConverter, m
   }
 
   // NOTE baseThreshold is added only when globalStyle is not defined because when we have globalStyle
-  // we're going to bind the computed values and not the original and this way we don't add ourserf to the dependency 
+  // we're going to bind the computed values and not the original and this way we don't add ourserf to the dependency
   // tracking (subscriptionCount)
   // NOTE baseThreshold is an "expression" and not a fixed number, so this is a concatenation
   if (typeof globalStyleProp == 'undefined' && typeof baseThreshold !== 'undefined') ifSubsThreshold += baseThreshold;
