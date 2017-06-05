@@ -222,10 +222,17 @@
 				signatureBlock{
 					label: Signature;
 				}
-				highlightedBlock{
-					label: Highligthed Block Details;
+
+				/* highlightedBlock & Style */
+				highlightedBlockStyle {
+					label: Highligthed Block Style;
+					properties: color backgroundColor
+				}
+				highlightedBlock {
+					label: Highligthed Block Content;
 					properties: url text;
 				}
+
 				personEmail{
 					label: Href attr;
 					properties: url;
@@ -1074,12 +1081,12 @@
 							  <tr>
 								<td style="margin: 0; border: 0; padding: 0;" align="left" width="2%">&nbsp;</td>
 								<td style="margin: 0; border: 0; padding: 0;" align="center" width="96%">
-								  <table style="background:#394048;width:100%!important;max-width: 600px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
+								  <table style="background-color: #394048; -ko-attr-bgcolor: @highlightedBlockStyle.backgroundColor; -ko-background-color: @highlightedBlockStyle.backgroundColor; width:100%!important;max-width: 600px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
 									<tbody>
 									  <tr>
 										<td style="margin:0;border:0;padding:0;" align="left" width="2%">&nbsp;</td>
 										<td style="margin: 0; border: 0; padding: 0;" align="center" width="96%">
-											<a data-ko-link="url" href="mailto:viiv.info-ch@viivhealthcare.com?subject=RE:+Alle+relevanten+Informationen+%C3%BCber+Maraviroc+jetzt+online" style="display:inline-block;width:100%;height:100%;line-height:22px;text-decoration:none;">&nbsp;<br><span data-ko-editable="text" style="display:inline-block;color:#ffffff;line-height: 25px;font-size:16px;">Bei spezifischen Fragen zu Maraviroc oder den Maraviroc-Studien klicken Sie bitte hier, um Kontakt mit unseren medizinischen Experten aufzunehmen.&nbsp;►</span><br>&nbsp;</a>
+											<a data-ko-link="url" href="mailto:viiv.info-ch@viivhealthcare.com?subject=RE:+Alle+relevanten+Informationen+%C3%BCber+Maraviroc+jetzt+online" style="display:inline-block;width:100%;height:100%;line-height:22px;text-decoration:none;">&nbsp;<br><span data-ko-editable="text" style="display:inline-block;line-height: 25px;font-size:16px;color:#ffffff; font-weight: normal; -ko-color: @highlightedBlockStyle.color;">Bei spezifischen Fragen zu Maraviroc oder den Maraviroc-Studien klicken Sie bitte hier, um Kontakt mit unseren medizinischen Experten aufzunehmen.&nbsp;►</span><br>&nbsp;</a>
 										</td>
 										<td style="margin:0;border:0;padding:0;" align="left" width="2%">&nbsp;</td>
 									  </tr>
