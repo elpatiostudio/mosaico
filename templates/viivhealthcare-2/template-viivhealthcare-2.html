@@ -144,8 +144,7 @@
 				singleArticleBlock { label: Image/Text Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  image  longText buttonLink;theme: contentTheme}
 				doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 				tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
-				bannerBlock imageWidth { label: Image Size; widget: select; options: 166=Small|258=Medium|350=Big; variant:imageWidth;}
-				bannerBlock { label: Logo Block; properties: image imageWidth=258; variant: imageWidth; theme: contentTheme}
+
 				titleBlock { label: Title; theme: contentTheme}
 				imageBlock longTextStyle {
 					label: Alternative Text;
@@ -163,7 +162,6 @@
 				hrBlock { label: Separator Block;  theme: contentTheme}
 				spacerBlock { label: Spacer Block;  theme: contentTheme}
 				spacerBlock:preview,
-				bannerBlock:preview { -ko-background-color: @[externalBackgroundColor] }
 				preheaderBlock:preview,
 				hrBlock:preview,
 				sideArticleBlock:preview,
@@ -192,6 +190,12 @@
 					label: Header;
 					properties: headerLogoVisible;
 				}
+
+				simpleBannerBlock {
+					label: Simple Banner;
+					properties: image;
+				}
+
 				heroStyle {
 					label: Title Style;
 					properties: color backgroundColor;
@@ -700,8 +704,43 @@
 		<!-- /headerBlock -->
 
 		<div data-ko-container="main" data-ko-wrap="false">
+
+		<!-- simpleBanner -->
+			<table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="simpleBannerBlock">
+				<tr>
+					<th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
+						<table class="container" width="100%" align="center" cellspacing="0" cellpadding="0" style="width:100%!important; max-width:600px;">
+						    <tbody><tr>
+						        <td align="left" width="100%" style="margin: 0; border: 0; padding: 0; font-size: 20px; line-height: 20px;">
+						            &nbsp;
+							        </td>
+							    </tr>
+							</tbody>
+						</table>
+						<table class="container" width="100%" bgcolor="#FFFFFF" align="center" cellspacing="0" cellpadding="0" style="background:#FFFFFF; width:100%!important; max-width:600px;">
+						    <tbody><tr>
+						        <td align="left" bgcolor="#FFFFFF" width="100%" style="margin: 0; border: 0; padding: 0; background: #FFFFFF;">
+						            <table width="100%" align="center" cellspacing="0" cellpadding="0" style="width: 100%!important; max-width: 600px;">
+					                    <tbody>
+					                    	<tr>
+						                        <td align="left" width="100%" valign="top" colspan="2" style="margin: 0; border: 0; padding: 0; width: 100%!important;">
+						                        	<a data-ko-link="image.url" href="" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: text-decoration: none;">
+						                            	<img width="600" height="220" data-ko-editable="image.src" src="http://mosaico.io/srv/f-default/img?method=placeholder&amp;params=600%2C220" class="at590fullauto" summary="at590fullauto" alt="" src="/img/banner.png" style="-ko-attr-alt: @[image.alt]; width:100%!important;vertical-align:bottom;display:block;" width="100%" border="0">
+						                            </a>
+						                        </td>
+						                    </tr>
+						            	</tbody>
+						            </table>
+							        </td>
+							    </tr>
+							</tbody>
+						</table>
+					</th>
+				</tr>
+			</table>
+			<!-- /simpleBanner -->
+
 			<!-- heroBlock -->
-			<!-- BANNER -->
 			<table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
 				"#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="heroBlock">
 				<tr>
@@ -786,13 +825,11 @@
 					</th>
 				</tr>
 			</table>
-			<!-- /BANNER -->
 			<!-- /heroBlock  -->
 
 
 			<!-- textBlock -->
-			<table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor=
-				"#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="textBlock">
+			<table style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #4d4d4d; background:#ffffff; line-height: 1;" align="center" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" width="100%" data-ko-block="textBlock">
 				<tr>
 					<th style="margin: 0; border: 0; padding: 0;font-weight:normal;" align="center">
 						<!-- EMAIL CONTENT -->
