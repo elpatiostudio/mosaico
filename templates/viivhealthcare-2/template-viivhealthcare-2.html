@@ -176,7 +176,12 @@
 				headerBlock { label: Header; }
 
 				/*by Mig*/
+				heroStyle {
+					label: Title Style;
+					properties: color backgroundColor;
+				}
 				heroBlock { label: Hero; }
+
 				emailTitleText { label: Email Title; extend: text;}
 				title { label: Title; widget: text }
 				subTitle { label: Subtitle; }
@@ -677,12 +682,12 @@
 																			<td align="left" width="360" valign="top" style="margin: 0; border: 0; padding: 0;text-align: center; vertical-align: top;">
 																		<![endif]-->
 														<td style="margin: 0; border: 0; padding: 0;width:100%!important;" align="right" width="100%">
-															<table valign="top" style="color:#394048;width:100%!important;" align="center" bgcolor="#757778" border="0" cellpadding="0" cellspacing="0" width="100%">
+															<table valign="top" style="color:#394048;width:100%!important;" align="center" bgcolor="#757778" style="background-color: #757778; -ko-background-color: @heroStyle.backgroundColor; -ko-attr-bgcolor: @heroStyle.backgroundColor" border="0" cellpadding="0" cellspacing="0" width="100%">
 																<tbody>
 																	<tr>
 																		<td style="margin: 0; border: 0;padding: 0;" width="25">&nbsp;</td>
 																		<td style="margin: 0; border: 0;padding: 0;" align="left">
-																			<table style="color:#394048;min-width:100%; width:100%;" align="left" bgcolor="#757778" cellpadding="0" cellspacing="0" width="100%">
+																			<table style="color:#394048;min-width:100%; width:100%;" align="left"  cellpadding="0" cellspacing="0" width="100%">
 																				<tbody>
 																					<tr>
 																						<td style="margin: 0; border:0; padding: 0;font-family:Arial, Helvetica,sans-serif;font-size:14px;mso-line-height-rule:exactly;line-height:14px;">
@@ -690,7 +695,7 @@
 																					</tr>
 																					<tr>
 																						<td style="margin: 0; border:0; padding: 0;font-family:Arial, Helvetica,sans-serif;color:#ffffff;font-weight:bold;font-size: 17px;line-height:30px;" class="fluidfontsize">
-																							<span data-ko-editable="title" style="font-family:Arial, Helvetica,sans-serif;color:#ffffff;font-weight:bold;font-size:17px;line-height:30px;border:0;text-decoration:none;display:block;">Maraviroc Support jetzt online</span></td>
+																							<span data-ko-editable="title" style="font-family:Arial, Helvetica,sans-serif;color:#ffffff;-ko-color: @heroStyle.color;font-weight:bold;font-size:17px;line-height:30px;border:0;text-decoration:none;display:block;">Maraviroc Support jetzt online</span></td>
 																						</tr>
 																						<tr>
 																							<td style="margin: 0; border:0; padding: 0;font-family:Arial, Helvetica,sans-serif;font-size:14px;mso-line-height-rule:exactly;line-height:14px;">
