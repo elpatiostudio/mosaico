@@ -43,7 +43,6 @@
 				hrHeight { label: Line height; widget: integer; max: 80; }
 				height { label: Height; widget: integer }
 				imageHeight { label: Image Height; extend: height; }
-				spacerSize { label: Height; widget: integer; max: 90; min: 4; }
 				align { label: Alignment; widget: select; options:left=Left|right=Right|center=Center}
 				alt {
 					label: Alternative Text;
@@ -112,30 +111,6 @@
 				template preheaderText { label: Preheader; }
 				template { label: Page; theme: frameTheme ;properties:  preheaderVisible=true; version: 1.0.6; }
 				footerBlock { label: Unsubscribe Block; theme: frameTheme }
-				socialBlock fbVisible { label: Facebook; }
-				socialBlock twVisible { label: Twitter }
-				socialBlock ggVisible { label: Google+ }
-				socialBlock inVisible { label: LinkedIn }
-				socialBlock flVisible { label: Flickr }
-				socialBlock viVisible { label: Vimeo }
-				socialBlock webVisible { label: Website }
-				socialBlock instVisible { label: Instagram }
-				socialBlock youVisible { label: YouTube }
-				socialBlock fbUrl { label: Facebook Link}
-				socialBlock twUrl { label: Twitter Link}
-				socialBlock ggUrl { label: Google+ Link}
-				socialBlock inUrl { label: LinkedIn Link}
-				socialBlock flUrl { label: Flickr Link}
-				socialBlock viUrl { label: Vimeo Link}
-				socialBlock webUrl { label: Website Link}
-				socialBlock instUrl { label: Instagram Link}
-				socialBlock youUrl { label: YouTube Link}
-				socialBlock {
-					label: Social Block;
-					properties: socialIconType=colors fbVisible=true fbUrl twVisible=true twUrl ggVisible=true ggUrl webVisible=false webUrl inVisible=false inUrl flVisible=false flUrl viVisible=false viUrl instVisible=false instUrl youVisible=false youUrl longTextStyle longText backgroundColor;
-					variant:socialIconType;
-					theme: frameTheme
-				}
 				preheaderBlock { label:Preheader Block;  theme: frameTheme}
 				sideArticleBlock imagePos {label:Image position;widget:select; options: left=Left|right=Right; }
 				sideArticleBlock imageWidth { label: Image Size; widget: select; options: 120=Small|166=Medium|258=Big; }
