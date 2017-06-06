@@ -15,7 +15,7 @@
 					widget: color;
 					customThemePalette: ['#e31c39','#394048','#0095c6','#ffffff','#000000','#4d4d4d','#dedfdf','#757778','#f7f8f8'];/*by MIG*/
 				}
-				thickness {
+				borderThickness {
 					label: Border;
 					widget: select;
 					options: 0=None|2=Enabled
@@ -225,17 +225,10 @@
 				}
 
 				/* highlightedBlock & Style */
-/*				buttonStyle color { label: Text Color; extend: color }
-				buttonStyle size { label: Text Size; extend: size }
-				buttonStyle { label: Button; properties: face color size buttonColor radius }
-				buttonStyle:preview { -ko-bind-text: @['Button']; -ko-font-family: @face; -ko-color: @color; -ko-font-size: @[size]px; -ko-background-color: @buttonColor; padding-left: 5px; -ko-border-radius: @[radius]px; }*/
-
 				highlightedBlockStyle {
 					label: Highligthed Block Style;
-					properties: color backgroundColor thickness;
+					properties: color backgroundColor borderThickness;
 				}
-				/*highlightedBlockStyle:preview { -ko-border-tickness @[thickness]px; }*/
-
 				highlightedBlock {
 					label: Highligthed Block Content;
 					properties: url text;
@@ -1087,7 +1080,7 @@
 							  <tr>
 								<td style="margin: 0; border: 0; padding: 0;" align="left" width="2%">&nbsp;</td>
 								<td style="margin: 0; border: 0; padding: 0;" align="center" width="96%">
-								  <table style="background-color: #394048; -ko-attr-bgcolor: @highlightedBlockStyle.backgroundColor; -ko-background-color: @highlightedBlockStyle.backgroundColor; width:100%!important;max-width: 600px; border-style: solid; border-color: #ffffff; -ko-border-color: @highlightedBlockStyle.color; border-width:0px; -ko-border-width: @[highlightedBlockStyle.thickness]px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
+								  <table style="background-color: #394048; -ko-attr-bgcolor: @highlightedBlockStyle.backgroundColor; -ko-background-color: @highlightedBlockStyle.backgroundColor; width:100%!important;max-width: 600px; border-style: solid; border-color: #ffffff; -ko-border-color: @highlightedBlockStyle.color; border-width:0px; -ko-border-width: @[highlightedBlockStyle.borderThickness]px;" align="center" bgcolor="#394048" cellpadding="0" cellspacing="0" width="100%">
 									<tbody>
 									  <tr>
 										<td style="margin:0;border:0;padding:0;" align="left" width="2%">&nbsp;</td>
