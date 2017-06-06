@@ -178,9 +178,20 @@
 				titleBlock:preview,
 				socialshareBlock:preview { -ko-background-color: @[backgroundColor] }
 				bodyTheme { label: Body; }
-				headerBlock { label: Header; }
 
 				/*by Mig*/
+				headerLogoVisible {
+					label: Header logo;
+					properties: visible=true;
+				}
+				headerLink1{
+					label: Online version link;
+					properties: url text;
+				}
+				headerBlock {
+					label: Header;
+					properties: headerLogoVisible;
+				}
 				heroStyle {
 					label: Title Style;
 					properties: color backgroundColor;
@@ -189,10 +200,14 @@
 					label: Main image;
 					extend: image;
 				}
+				imageVisible {
+					label: Visible?;
+					extend: cssVisibility;
+				}
 				bannerSecondaryImage {
-					label: Bottom image;
+					label: Secondary image;
 					extend: image;
-					properties: cssVisibility;
+					properties: imageVisible;
 				}
 				heroBlock {
 					label: Hero Block;
@@ -206,10 +221,7 @@
 					label: Link;
 					properties: url text;
 				}
-				headerLink1{
-					label: Online version link;
-					properties: url text;
-				}
+
 				footerLink1{
 					label: Left link;
 					properties: url text;
@@ -657,6 +669,34 @@
 							</tr>
 						</tbody>
 					</table>
+					<div data-ko-display="headerLogoVisible.visible" data-ko-wrap="false">
+						<table class="container" style="background:#ffffff;width:100%!important;max-width: 600px;" align="center" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" width="600">
+							<tbody>
+								<tr>
+									<td style="margin:0;border:0;padding:0;font-size:20px;line-height:20px;" align="left" width="100%">&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="container" style="width:100%!important; max-width:600px;" align="center" cellpadding="0" cellspacing="0" width="600">
+							<tbody>
+								<tr>
+									<td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+									<td style="margin: 0; border: 0; padding: 0; font-family: Arial; font-size: 12px; line-height: 25px; color: #447DC0; font-weight: bold;" align=
+										"left" width="92%">
+										<table style="width: 100%!important;" cellpadding="0" cellspacing="0" width="100%">
+											<tbody>
+												<tr>
+													<td style="border: 0; margin: 0; padding: 0;" align="center"><img alt="ViiV Healthcare" src="http://viiv-email-images.pharmiwebsolutions.com/20150327/template/viiv_logo.png" style="display:block;border:0;width: 51px !important;" align="middle" height="45" width="51"></td>
+													<td style="width: 20px!important; border: 0; margin: 0; padding: 0;" width="20px">&nbsp;</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+									<td style="margin: 0; border: 0; padding: 0;" align="left" width="4%">&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</th>
 			</tr>
 		</table>
@@ -692,10 +732,10 @@
 												<!--[if (mso)]>
 												<td width="240" align="left" valign="top" style="margin: 0; border: 0; padding: 0;">&nbsp;</td>
 												<![endif]-->
-														<td class="tdwidth240removeat590" style="width:240px; margin: 0; border: 0;padding: 0; mso-hide:all;overflow:hidden" align="left" height="0" valign="top" width="240">
-															<a href="@heroBlockUrl" style="text-decoration:none;border:0;outline:0;"><img data-ko-editable="bannerSecondaryImage.src" class="removeimgat590" summary="removeimgat590" alt="" src="img/banner_bottom.jpg" style="opacity: 1; -ko-attr-alt: @bannerMainImage.alt; -ko-opacity:@bannerSecondaryImage.cssVisibility; color: transparent;min-height: 58px; width: auto;vertical-align: bottom; border:0;outline:0;" height="58" width="240"></a>
-														</td>
-												<!--[if (gte mso 9)|(IE)]>
+														<td class="tdwidth240removeat590" style="width:240px; margin: 0; border: 0;padding: 0; mso-hide:all;overflow:hidden" align="left" height="0" valign="top" width="240" height="58">
+															<a href="@heroBlockUrl" style="text-decoration:none;border:0;outline:0;"><img data-ko-editable="bannerSecondaryImage.src" class="removeimgat590" summary="removeimgat590" alt="" src="img/banner_bottom.jpg" style="opacity: 1; -ko-attr-alt: @bannerMainImage.alt; -ko-opacity:@bannerSecondaryImage.imageVisible; color: transparent;min-height: 58px; width: auto;vertical-align: bottom; border:0;outline:0;" height="58" width="240"></a visible>
+														</td visible>
+												<!--[if (gte mso 9)|(IE)] visible>
 												<table width="360" bgcolor="#394048" align="center" valign="top" cellpadding="0" cellspacing="0" border="0" style="bacground-color:#394048">
 														<tr>
 															<td align="left" width="360" valign="top" style="margin: 0; border: 0; padding: 0;text-align: center; vertical-align: top;">
