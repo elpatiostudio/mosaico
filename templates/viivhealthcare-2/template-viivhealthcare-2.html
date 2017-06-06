@@ -120,10 +120,6 @@
 				doubleArticleBlock { label: 2 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 				tripleArticleBlock { label: 3 Columns Block; properties: backgroundColor titleVisible=true buttonVisible=true imageVisible=true titleTextStyle longTextStyle buttonStyle  leftImage  leftLongText leftButtonLink middleImage  middleLongText middleButtonLink rightImage  rightLongText rightButtonLink; theme: contentTheme}
 
-				titleBlock {
-					label: Title;
-					theme: contentTheme;
-				}
 				imageBlock longTextStyle {
 					label: Alternative Text;
 				}
@@ -155,7 +151,7 @@
 				socialshareBlock:preview { -ko-background-color: @[backgroundColor] }
 				bodyTheme { label: Body; }
 
-				/*by Mig*/
+				/* by MIG Starts*/
 				headerLogoVisible {
 					label: Header logo;
 					properties: visible=true;
@@ -168,12 +164,14 @@
 					label: Header;
 					properties: headerLogoVisible;
 				}
-
 				simpleBannerBlock {
 					label: Simple Banner;
-					properties: image;
+					properties: image imageHeight;
 				}
-
+				titleBlock {
+					label: Title;
+					theme: contentTheme;
+				}
 				heroStyle {
 					label: Title Style;
 					properties: color backgroundColor;
@@ -196,7 +194,6 @@
 					label: Hero Block;
 					properties: text bannerMainImage bannerSecondaryImage;
 				}
-
 				emailTitleText { label: Email Title; extend: text;}
 				title { label: Title; widget: text }
 				subTitle { label: Subtitle; }
@@ -236,8 +233,6 @@
 				signatureBlock{
 					label: Signature;
 				}
-
-				/* highlightedBlock & Style */
 				highlightedBlockStyle {
 					label: Highligthed Block Style;
 					properties: color backgroundColor borderThickness;
@@ -246,11 +241,11 @@
 					label: Highligthed Block Content;
 					properties: url text;
 				}
-
 				personEmail{
 					label: Href attr;
 					properties: url;
 				}
+				/* by MIG Ends*/
 			}
 		</style>
 		<style type="text/css">
@@ -703,7 +698,7 @@
 					                    	<tr>
 						                        <td align="left" width="100%" valign="top" colspan="2" style="margin: 0; border: 0; padding: 0; width: 100%!important;">
 						                        	<a data-ko-link="image.url" href="" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: text-decoration: none;">
-						                            	<img width="600" height="220" data-ko-editable="image.src" src="http://mosaico.io/srv/f-default/img?method=placeholder&amp;params=600%2C220" class="at590fullauto" summary="at590fullauto" alt="" src="/img/banner.png" style="-ko-attr-alt: @[image.alt]; width:100%!important;vertical-align:bottom;display:block;" width="100%" border="0">
+						                            	<img width="600" height="200" data-ko-editable="image.src" src="http://mosaico.io/srv/f-default/img?method=placeholder&amp;params=600%2C200" class="at590fullauto" summary="at590fullauto" alt="" src="/img/banner.png" style="-ko-attr-alt: @[image.alt]; width:100%!important;vertical-align:bottom;display:block; height: auto; -ko-attr-height: @imageHeight;" width="100%" border="0">
 						                            </a>
 						                        </td>
 						                    </tr>
