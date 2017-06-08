@@ -30,16 +30,61 @@ $(function() {
     return;
   }
   // var basePath = window.location.href.substr(0, window.location.href.lastIndexOf('/')).substr(window.location.href.indexOf('/','https://'.length));
-  var basePath = window.location.href;
-  if (basePath.lastIndexOf('#') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('#'));
-  if (basePath.lastIndexOf('?') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('?'));
-  if (basePath.lastIndexOf('/') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('/'));
+  var basePath = window.location.href.substr(0, window.location.href.lastIndexOf('/'));
+  // var basePath = window.location.href;
+  // if (basePath.lastIndexOf('#') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('#'));
+  // if (basePath.lastIndexOf('?') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('?'));
+  // if (basePath.lastIndexOf('/') > 0) basePath = basePath.substr(0, basePath.lastIndexOf('/'));
   var plugins;
   // A basic plugin that expose the "viewModel" object as a global variable.
   // plugins = [function(vm) {window.viewModel = vm;}];
+//   plugins = [
+//     // plugin for integrating save button
+//     function (viewModel) {
+//         console.log('PROCESS PLUGIN');
+//         var saveToServerCmd = {
+//             name: 'Save To Server', // l10n happens in the template
+//             enabled: ko.observable(true)
+//         };
+//         saveToServerCmd.execute = function () {
+//             saveToServerCmd.enabled(false);
+//             viewModel.metadata.changed = Date.now();
+//             if (typeof viewModel.metadata.key == 'undefined') {
+//                 var rnd = Math.random().toString(36).substr(2, 7);
+//                 viewModel.metadata.key = rnd;
+//             }
+//             // This is the simplest for sending it as POST
+//             // append postData with csrfToken
+//             var postData = {
+//                 csrf_token: 'yourCsrfValueHere', // this is only required if your back-end requires csrf token
+//                 metadata: viewModel.exportMetadata(),
+//                 content: viewModel.exportJSON(),
+//                 html: viewModel.exportHTML()
+//             };
+//             $.post('your url here', postData)
+//                 .done(function () {
+//                     viewModel.notifier.success(viewModel.t('Successfully saved.'));
+//                 })
+//                 .fail(function (jqXHR, textStatus, error) {
+//                     console.log(textStatus);
+//                     console.log(error);
+//                     console.log(jqXHR);
+//                     viewModel.notifier.error(viewModel.t('Saving failed. Please try again in a few moment or contact us.'));
+//                 })
+//                 .always(function () {
+//                     saveToServerCmd.enabled(true);
+//                 }
+//             );
+//         };
+//         viewModel.saveToServer = saveToServerCmd;
+//         //viewModel.download = downloadCmd;
+//     },
+// ];
+
   var ok = Mosaico.init({
     imgProcessorBackend: basePath+'/img/',
     emailProcessorBackend: basePath+'/dl/',
+    saveProcessorBackend: basePath+'/template/',
     titleToken: "MOSAICO Responsive Email Designer",
     fileuploadConfig: {
       url: basePath+'/upload/',

@@ -4,7 +4,7 @@ var console = require("console");
 var ko = require("knockout");
 var $ = require("jquery");
 
-var lsLoader = function(hash_key, emailProcessorBackend) {
+var lsLoader = function(hash_key, emailProcessorBackend, saveProcessorBackend) {
   var mdStr = global.localStorage.getItem("metadata-" + hash_key);
   if (mdStr !== null) {
     var model;
@@ -14,14 +14,14 @@ var lsLoader = function(hash_key, emailProcessorBackend) {
     return {
       metadata: md,
       model: model,
-      extension: lsCommandPluginFactory(md, emailProcessorBackend)
+      extension: lsCommandPluginFactory(md, emailProcessorBackend, saveProcessorBackend)
     };
   } else {
     throw "Cannot find stored data for "+hash_key;
   }
 };
 
-var lsCommandPluginFactory = function(md, emailProcessorBackend) {
+var lsCommandPluginFactory = function(md, emailProcessorBackend, saveProcessorBackend) {
   var commandsPlugin = function(mdkey, mdname, viewModel) {
 
     // console.log("loading from metadata", md, model);
@@ -42,10 +42,6 @@ var lsCommandPluginFactory = function(md, emailProcessorBackend) {
     };
     var testCmd = {
       name: 'Test', // l10n happens in the template
-      enabled: ko.observable(true)
-    };
-    var downloadCmd = {
-      name: 'Download', // l10n happens in the template
       enabled: ko.observable(true)
     };
     testCmd.execute = function() {
@@ -79,6 +75,10 @@ var lsCommandPluginFactory = function(md, emailProcessorBackend) {
         testCmd.enabled(true);
       }
     };
+    var downloadCmd = {
+      name: 'Download', // l10n happens in the template
+      enabled: ko.observable(true)
+    };
     downloadCmd.execute = function() {
       downloadCmd.enabled(false);
       viewModel.notifier.info(viewModel.t("Downloading..."));
@@ -88,10 +88,42 @@ var lsCommandPluginFactory = function(md, emailProcessorBackend) {
       global.document.getElementById('downloadForm').submit();
       downloadCmd.enabled(true);
     };
+    var saveToServerCmd = {
+      name: 'Save To Server', // l10n happens in the template
+      enabled: ko.observable(true)
+    };
+    saveToServerCmd.execute = function() {
+      saveToServerCmd.enabled(false);
+
+      var metaData = viewModel.exportMetadata();
+      var templateData = viewModel.exportJSON();
+
+      var postUrl = saveProcessorBackend ? saveProcessorBackend : '/template/';
+      var post = $.post(postUrl, {
+        action: 'save',
+        key: mdkey,
+        name: mdname,
+        html: viewModel.exportHTML(),
+        template_data: templateData,
+        meta_data: metaData
+      }, null, 'html');
+      post.fail(function() {
+        console.log("fail", arguments);
+        viewModel.notifier.error(viewModel.t('Unexpected error talking to server: contact us!'));
+      });
+      post.success(function() {
+        console.log("success", arguments);
+        viewModel.notifier.success(viewModel.t("Template saved to server..."));
+      });
+      post.always(function() {
+        saveToServerCmd.enabled(true);
+      });
+    };
 
     viewModel.save = saveCmd;
     viewModel.test = testCmd;
     viewModel.download = downloadCmd;
+    viewModel.saveToServer = saveToServerCmd;
   }.bind(undefined, md.key, md.name);
 
   return commandsPlugin;
