@@ -43,16 +43,17 @@
 		showSaved: ko.observable(false),
 		edits: ko.observableArray(initialEdits),
 		templates: [{
-           name: 'viivhealthcare-2', desc: 'ViiVHealthcare template 2'
-        },{
            name: 'viivhealthcare', desc: 'ViiVHealthcare template'
         },{
 		   name: 'versafix-1', desc: 'The versatile template'
-		},{
-		   name: 'tedc15', desc: 'The TEDC15 template'
-		},{
-		   name: 'tutorial', desc: 'The Tutorial'
-		}]
+		}
+		// ,{
+		//    name: 'tedc15', desc: 'The TEDC15 template'
+		// }
+		// ,{
+		//    name: 'tutorial', desc: 'The Tutorial'
+		// }
+		]
 	   };
 
 	   viewModel.edits.subscribe(function(newEdits) {
